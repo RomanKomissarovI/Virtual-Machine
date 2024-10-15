@@ -1,0 +1,7 @@
+9
+push 3
+push 4
+add
+pop
+push 5
+hlt
