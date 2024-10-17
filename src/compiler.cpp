@@ -7,7 +7,6 @@ void Compiler(FILE* input, virt_mach* vm)
 {
     int size = 0;
     fscanf(input, "%d", &size);
-    printf("size: %d\n", size);
     vm->code = (command_t*) calloc (size, sizeof(command_t));
     
     char com[15];
@@ -15,12 +14,11 @@ void Compiler(FILE* input, virt_mach* vm)
     int i = 0;
     while (i < size)
     {
-        printf("begin\n");
         fscanf(input, "%s", com);
-        printf("string: %s\n", com);
         if (strcmp(com, "hlt") == 0)
         {
             vm->code[i++] = hlt_c;
+            return;
         }
         else if (strcmp(com, "push") == 0)
         {
@@ -39,6 +37,10 @@ void Compiler(FILE* input, virt_mach* vm)
         else if (strcmp(com, "in") == 0)
         {
             vm->code[i++] = in_c;
+        }
+        else if (strcmp(com, "out") == 0)
+        {
+            vm->code[i++] = out_c;
         }
         else if (strcmp(com, "add") == 0)
         {

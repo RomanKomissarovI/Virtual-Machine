@@ -3,6 +3,8 @@
 #include "../headers/stack_func.h"
 #include "../headers/compiler.h"
 #include "../headers/virt_mach_func.h"
+#include "../headers/executor.h"
+#include "../headers/stack_func.h"
 
 int main()
 {
@@ -11,11 +13,15 @@ int main()
     
     FILE* input = fopen("commands.txt", "r");
     Compiler(input, &vm);
-    int i = 0;
+    int i = 0; 
     while (vm.code[i] != hlt_c)
     {
-        printf("%lld ", vm.code[i++]);
+        printf("%d ", vm.code[i++]);
     }
-    printf("%lld ", vm.code[i++]);
+    printf("\n");
+    
+    StackDump(&(vm.stk));
+    Run(&vm);
+    StackDump(&(vm.stk));
     return 0;
 }

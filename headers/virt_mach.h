@@ -3,7 +3,7 @@
 
 #include "stack.h"
 
-typedef long long command_t;
+typedef int command_t;
 
 enum CommandCodes {
     hlt_c = -1,
@@ -11,13 +11,14 @@ enum CommandCodes {
     pop_c = 2,
     dump_c = 3,
     in_c = 4, // с консоли 
-    add_c = 5,
-    sub_c = 6,
-    mul_c = 7,
-    div_c = 8,
-    sqrt_c = 9,
-    sin_c = 10,
-    cos_c = 11,
+    out_c = 5,
+    add_c = 6,
+    sub_c = 7,
+    mul_c = 8,
+    div_c = 9,
+    sqrt_c = 10,
+    sin_c = 11,
+    cos_c = 12,
 };
 
 struct virt_mach

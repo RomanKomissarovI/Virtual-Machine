@@ -1,7 +1,7 @@
-9
+8
+push 6
 push 3
-push 4
-add
-pop
-push 5
+out
+out
+mul
 hlt
