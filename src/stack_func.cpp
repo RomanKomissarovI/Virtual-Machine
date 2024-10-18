@@ -17,7 +17,7 @@ int StackPush(Stack* stk, stack_t a)
 
     if (stk->size == stk->capacity)
     {
-        err = Recalloc(stk, stk->size, (int) stk->capacity * 1.4 + 10);
+        err = Recalloc(stk, stk->size, (int) (stk->capacity * 1.4) + 10);
     }
 
     DEBUG_PR_ERR(err);
@@ -35,7 +35,7 @@ int StackPush(Stack* stk, stack_t a)
     return err;
 }
 
-int StackPop(Stack* stk)
+long long StackPop(Stack* stk)
 {
     int err = No_Errors;
 
@@ -62,6 +62,7 @@ int StackPop(Stack* stk)
     DEBUG_PR_ERR(err);)
 
     ON_DEBUG(return err;)
+
     return elem;
 }
 

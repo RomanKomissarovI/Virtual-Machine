@@ -13,13 +13,15 @@ int main()
     
     FILE* input = fopen("commands.txt", "r");
     Compiler(input, &vm);
+    fclose(input);
     int i = 0; 
     while (vm.code[i] != hlt_c)
     {
-        printf("%d ", vm.code[i++]);
+        printf(format " ", vm.code[i++]);
     }
-    printf("\n");
+    printf("-1\n");
     
+
     StackDump(&(vm.stk));
     Run(&vm);
     StackDump(&(vm.stk));

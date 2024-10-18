@@ -10,7 +10,7 @@ void Compiler(FILE* input, virt_mach* vm)
     vm->code = (command_t*) calloc (size, sizeof(command_t));
     
     char com[15];
-    int d = 0;
+    command_t d = 0;
     int i = 0;
     while (i < size)
     {
@@ -23,7 +23,7 @@ void Compiler(FILE* input, virt_mach* vm)
         else if (strcmp(com, "push") == 0)
         {
             vm->code[i++] = push_c;
-            fscanf(input, "%d", &d);
+            fscanf(input, format, &d);
             vm->code[i++] = d;
         }
         else if (strcmp(com, "pop") == 0)

@@ -2,8 +2,9 @@
 #define VIRTUAL_MACHINE_H
 
 #include "stack.h"
+#include "macros.h"
 
-typedef int command_t;
+typedef long long command_t;
 
 enum CommandCodes {
     hlt_c = -1,

@@ -1,7 +1,9 @@
-8
+12
 push 6
 push 3
-out
-out
+div
+push 3
+push 5
 mul
+out
 hlt

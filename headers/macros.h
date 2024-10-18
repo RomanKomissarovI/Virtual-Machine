@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 //#define DEBUG
+#define format "%I64d"
 
 #ifdef DEBUG
     #define DEBUG_PRINTF(...) printf(__VA_ARGS__)

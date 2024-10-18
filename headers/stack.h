@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "macros.h"
 
-typedef int stack_t;
+typedef long long stack_t;
 typedef unsigned long long canar_t;
 ON_DEBUG(const canar_t k_Canar = 0xBADC0FFEE;)
 

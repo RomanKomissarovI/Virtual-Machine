@@ -29,13 +29,13 @@ void Run(virt_mach* vm)
             }
             case 4: {
                 command_t dig = 0;
-                scanf("%d", &dig); // const format
+                scanf(format, &dig); // const format
                 StackPush(&(vm->stk), dig);
                 ip++;
                 break;
             }
             case 5: {
-                printf("%d\n", *(stack_t*) (vm->stk.data + (vm->stk.size - 1) * sizeof(stack_t)));
+                printf(format "\n", *(stack_t*) (vm->stk.data + (vm->stk.size - 1) * sizeof(stack_t)));
                 ip++;
                 break;
             }
@@ -61,17 +61,17 @@ void Run(virt_mach* vm)
                 break;
             }
             case 10: {
-                StackPush(&(vm->stk), sqrt((double) StackPop(&(vm->stk))));
+                StackPush(&(vm->stk), (stack_t) sqrt((double) StackPop(&(vm->stk))));
                 ip++;
                 break;
             }
             case 11: {
-                StackPush(&(vm->stk), sin((double) StackPop(&(vm->stk))));
+                StackPush(&(vm->stk), (stack_t) sin((double) StackPop(&(vm->stk))));
                 ip++;
                 break;
             }
             case 12: {
-                StackPush(&(vm->stk), cos((double) StackPop(&(vm->stk))));
+                StackPush(&(vm->stk), (stack_t) cos((double) StackPop(&(vm->stk))));
                 ip++;
                 break;
             }

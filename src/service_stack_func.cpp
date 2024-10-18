@@ -73,7 +73,7 @@ int StackDump(Stack* stk ON_DEBUG(, const char* file, int line))
         char* elem_now = stk->data;
         while (i < size)
         {
-            fprintf(output, "%d ", *(stack_t*) elem_now);
+            fprintf(output, format " ", *(stack_t*) elem_now);
 
             ++i;
             elem_now += sizeof(stack_t);

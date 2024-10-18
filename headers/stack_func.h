@@ -5,7 +5,7 @@
 
 int StackPush(Stack* stk, stack_t a);
 
-int StackPop(Stack* stk);
+long long StackPop(Stack* stk);
 
 int StackCtor(Stack* stk ON_DEBUG(, const char* name, const char* file, int line));
 
