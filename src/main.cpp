@@ -22,8 +22,8 @@ int main()
     printf("-1\n");
     
 
-    StackDump(&(vm.stk));
+    //StackDump(&(vm.stk));
     Run(&vm);
-    StackDump(&(vm.stk));
+    //StackDump(&(vm.stk));
     return 0;
 }

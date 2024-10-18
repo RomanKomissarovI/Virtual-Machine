@@ -4,7 +4,7 @@
 
 void Run(virt_mach* vm)
 {
-    int ip = 0;
+    size_t ip = 0;
     while (true)
     {
         switch (vm->code[ip]) 
@@ -73,6 +73,64 @@ void Run(virt_mach* vm)
             case 12: {
                 StackPush(&(vm->stk), (stack_t) cos((double) StackPop(&(vm->stk))));
                 ip++;
+                break;
+            }
+            case 13: {
+                if (StackPop(&(vm->stk)) < StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 14: {
+                if (StackPop(&(vm->stk)) <= StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 15: {
+                if (StackPop(&(vm->stk)) > StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 16: {
+                if (StackPop(&(vm->stk)) >= StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 17: {
+                if (StackPop(&(vm->stk)) == StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 18: {
+                if (StackPop(&(vm->stk)) != StackPop(&(vm->stk)))
+                {
+                    ip = (size_t) vm->code[ip + 1];
+                    break;
+                }
+                ip += 2;
+                break;
+            }
+            case 19: {
+                ip = (size_t) vm->code[ip + 1];
                 break;
             }
             default: {

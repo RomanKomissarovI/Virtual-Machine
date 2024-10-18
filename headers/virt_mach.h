@@ -20,6 +20,13 @@ enum CommandCodes {
     sqrt_c = 10,
     sin_c = 11,
     cos_c = 12,
+    jm_c = 13,
+    jme_c = 14,
+    jl_c = 15,
+    jle_c = 16,
+    je_c = 17,
+    jne_c = 18,
+    jmp_c = 19,
 };
 
 struct virt_mach

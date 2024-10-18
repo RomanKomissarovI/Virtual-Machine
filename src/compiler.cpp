@@ -3,15 +3,17 @@
 #include "../headers/compiler.h"
 #include "../headers/virt_mach.h"
 
+// СРАВНЕНИЕ ИЗ ГЛУБИНЫ НАВЕРХ
+
 void Compiler(FILE* input, virt_mach* vm)
 {
-    int size = 0;
-    fscanf(input, "%d", &size);
+    size_t size = 0;
+    fscanf(input, "%zu", &size);
     vm->code = (command_t*) calloc (size, sizeof(command_t));
     
-    char com[15];
+    char com[20];
     command_t d = 0;
-    int i = 0;
+    size_t i = 0;
     while (i < size)
     {
         fscanf(input, "%s", com);
@@ -69,6 +71,48 @@ void Compiler(FILE* input, virt_mach* vm)
         else if (strcmp(com, "cos") == 0)
         {
             vm->code[i++] = cos_c;
+        }
+        else if (strcmp(com, "jm") == 0)
+        {
+            vm->code[i++] = jm_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "jme") == 0)
+        {
+            vm->code[i++] = jme_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "jl") == 0)
+        {
+            vm->code[i++] = jl_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "jle") == 0)
+        {
+            vm->code[i++] = jle_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "je") == 0)
+        {
+            vm->code[i++] = je_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "jne") == 0)
+        {
+            vm->code[i++] = jne_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
+        }
+        else if (strcmp(com, "jmp") == 0)
+        {
+            vm->code[i++] = jmp_c;
+            fscanf(input, format, &d);
+            vm->code[i++] = d;
         }
     }
 }
