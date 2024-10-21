@@ -7,9 +7,9 @@ static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
                            "sqrt", "sin",  "cos", "jm",   "jme" ,
                            "jl",   "jle",  "je",  "jne",  "jmp"};
 
-long long SizeCounter(FILE* input)
+size_t SizeCounter(FILE* input)
 {
-    long long size = 0;
+    size_t size = 0;
     char com[20];
     command_t d = 0;
 

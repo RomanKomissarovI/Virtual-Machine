@@ -13,7 +13,7 @@ static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
 void Assembler(FILE* input, long long size)
 {
     FILE* output = fopen("../Processor/assembler.txt", "w");
-    fprintf(output, "%I64d\n", size);
+    fprintf(output, "%zu\n", size);
 
     char com[20];
     command_t d = 0;

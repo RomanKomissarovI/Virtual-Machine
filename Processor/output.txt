@@ -1,0 +1,10 @@
+Elems:
+55 42 
+size: 2
+capacity: 10
+Error code: 0
+Elems:
+13 
+size: 1
+capacity: 10
+Error code: 0

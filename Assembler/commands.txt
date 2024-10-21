@@ -1,20 +1,11 @@
-push 99
-pop
-dump
-in
-out
+push 25
+push 30
 add
-sub
+push 6
+push 7
 mul
-div
-sqrt
-sin
-cos
-jm 99
-jme 99
-jl 99
-jle 99
-je 99
-jne 99
-jmp 99
+dump
+sub
+dump
+out
 hlt
