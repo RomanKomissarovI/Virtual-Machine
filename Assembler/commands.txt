@@ -1,0 +1,20 @@
+push 99
+pop
+dump
+in
+out
+add
+sub
+mul
+div
+sqrt
+sin
+cos
+jm 99
+jme 99
+jl 99
+jle 99
+je 99
+jne 99
+jmp 99
+hlt
