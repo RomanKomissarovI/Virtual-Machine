@@ -5,9 +5,11 @@
 #include "macros.h"
 
 typedef long long command_t;
+const int count_reg = 4;
+const int count_com = 20;
 
 enum CommandCodes {
-    hlt_c = -1,
+    hlt_c = 0,
     push_c = 1,
     pop_c = 2,
     dump_c = 3,
@@ -33,6 +35,7 @@ struct virt_mach
 {
     Stack stk;
     command_t* code;
+    command_t registers[4];
 };
 
 #endif // VIRTUAL_MACHINE_H

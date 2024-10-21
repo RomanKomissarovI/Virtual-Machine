@@ -5,5 +5,9 @@
 void VM_Ctor(virt_mach* vm)
 {
     vm->code = nullptr;
+    for (int i = 0; i < count_reg; ++i)
+    {
+        vm->registers[i] = 0;
+    }
     STACK_CTOR(vm->stk);
 }
