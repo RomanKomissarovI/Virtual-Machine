@@ -5,8 +5,8 @@
 int main()
 {
     FILE* input = fopen("commands.txt", "r");
-    long long size = SizeCounter(input);
-
+    int size = SizeCounter(input);
+    
     fclose(input);
     input = fopen("commands.txt", "r");
 
@@ -23,7 +23,7 @@ int main()
     input = fopen("commands.txt", "r");
 
     Assembler(input, size, labels);
-    
+
     fclose(input);
 
     for(int i = 0; i < count_labels; ++i)

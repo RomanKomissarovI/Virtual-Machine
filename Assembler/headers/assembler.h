@@ -2,9 +2,9 @@
 #define ASSEMBLER_H
 
 #include <stdio.h>
-#include "virt_mach.h"
+#include "assembler_info.h"
 #include "label.h"
 
-void Assembler(FILE* input, long long size, Label labels[]);
+void Assembler(FILE* input, int size, Label labels[]);
 
 #endif // ASSEMBLER_H

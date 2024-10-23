@@ -1,5 +1,6 @@
 #include <string.h>
-#include "../headers/virt_mach.h"
+#include <stdlib.h>
+#include "../headers/assembler_info.h"
 #include "../headers/label_func.h"
 
 static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
@@ -9,7 +10,7 @@ static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
 
 void InitAllLabels(FILE* input, Label labels[])
 {
-    FILE* file_labels = fopen("../Processor/labels.txt", "w");
+    FILE* file_labels = fopen("../Processor/labels.txt", "w"); //fopen("../Processor/labels.txt", "w");
 
     char com[20];
     int ip = 0;
@@ -45,7 +46,7 @@ void InitAllLabels(FILE* input, Label labels[])
         }
         case push_c: {
             ip += 1;
-            fscanf(input, format, &d);
+            fscanf(input, format_code, &d);
             ip += 1;
             break;
         }

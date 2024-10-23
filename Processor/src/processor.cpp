@@ -4,7 +4,7 @@
 
 void Run(virt_mach* vm)
 {
-    size_t ip = 0;
+    int ip = 0;
     while (true)
     {
         switch (vm->code[ip]) 

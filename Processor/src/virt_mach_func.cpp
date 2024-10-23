@@ -4,8 +4,8 @@
 
 void VM_Ctor(virt_mach* vm, FILE* input)
 {
-    size_t size = 0;
-    fscanf(input, "%zu", &size);
+    int size = 0;
+    fscanf(input, "%d", &size);
     vm->code = (command_t*) calloc(size, sizeof(char));
     for(int i = 0; i < (int) (size / sizeof(command_t)); ++i)
     {

@@ -1,5 +1,5 @@
 #include <string.h>
-#include "../headers/virt_mach.h"
+#include "../headers/assembler_info.h"
 #include "../headers/size_counter.h"
 #include "../headers/label_func.h"
 //%s:%n
@@ -8,9 +8,9 @@ static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
                            "sqrt", "sin",  "cos", "jm",   "jme" ,
                            "jl",   "jle",  "je",  "jne",  "jmp"};
 
-size_t SizeCounter(FILE* input)
+int SizeCounter(FILE* input)
 {
-    size_t size = 0;
+    int size = 0;
     char com[20];
     command_t d = 0;
 

@@ -1,6 +1,7 @@
 #ifndef LABEL_FUNC_H
 #define LABEL_FUNC_H
 
+#include <stdio.h>
 #include "label.h"
 
 void InitAllLabels(FILE* input, Label labels[]);

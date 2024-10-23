@@ -1,3 +1,7 @@
 jmp next
+push 5
+pop
 next:
+push 8
+dump
 hlt

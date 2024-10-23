@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-size_t SizeCounter(FILE* input);
+int SizeCounter(FILE* input);
 
 #endif // SIZE_COUNTER_H
