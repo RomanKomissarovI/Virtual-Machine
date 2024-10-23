@@ -1,7 +1,8 @@
 #include <string.h>
 #include "../headers/virt_mach.h"
 #include "../headers/size_counter.h"
-
+#include "../headers/label_func.h"
+//%s:%n
 static const char* str_com[20] = {"hlt",  "push", "pop", "dump", "in",
                            "out",  "add",  "sub", "mul",  "div" ,
                            "sqrt", "sin",  "cos", "jm",   "jme" ,
@@ -99,6 +100,7 @@ size_t SizeCounter(FILE* input)
             break;
         }
         default:
+            size -= sizeof(command_t);
             break;
         }
     }

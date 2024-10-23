@@ -1,10 +1,10 @@
 Elems:
-55 42 
+60 42 
 size: 2
 capacity: 10
 Error code: 0
 Elems:
-13 
+18 
 size: 1
 capacity: 10
 Error code: 0

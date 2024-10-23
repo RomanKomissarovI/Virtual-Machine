@@ -1,11 +1,3 @@
-push 25
-push 30
-add
-push 6
-push 7
-mul
-dump
-sub
-dump
-out
+jmp next
+next:
 hlt
