@@ -1,14 +1,8 @@
 #include "../headers/assembler.h"
-#include "../headers/size_counter.h"
-#include "../headers/label_func.h"
 
 int main()
 {
     FILE* input = fopen("commands.txt", "r");
-    int size = SizeCounter(input);
-    
-    fclose(input);
-    input = fopen("commands.txt", "r");
 
     Label labels[20];
     for(int i = 0; i < count_labels; ++i)
@@ -17,12 +11,12 @@ int main()
         labels[i].name = "";
     }
 
-    InitAllLabels(input, labels);
-
+    Assembler(input, labels);
+    
     fclose(input);
     input = fopen("commands.txt", "r");
 
-    Assembler(input, size, labels);
+    Assembler(input, labels);
 
     fclose(input);
 

@@ -1,7 +1,6 @@
-jmp next
-push 5
-pop
-next:
-push 8
+push 228
+pop CX
+dump
+push CX
 dump
 hlt

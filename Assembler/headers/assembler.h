@@ -5,6 +5,6 @@
 #include "assembler_info.h"
 #include "label.h"
 
-void Assembler(FILE* input, int size, Label labels[]);
+void Assembler(FILE* input, Label labels[]);
 
 #endif // ASSEMBLER_H

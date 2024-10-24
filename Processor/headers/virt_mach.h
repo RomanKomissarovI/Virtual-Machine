@@ -7,6 +7,7 @@
 typedef long long command_t;
 const int count_reg = 4;
 const int count_com = 20;
+const int RAM_size = 1000;
 
 enum CommandCodes {
     hlt_c = 0,
@@ -36,6 +37,7 @@ struct virt_mach
     Stack stk;
     command_t* code;
     command_t registers[4];
+    //command_t* RAM;
 };
 
 #endif // VIRTUAL_MACHINE_H

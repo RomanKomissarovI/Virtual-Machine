@@ -2,6 +2,8 @@
 #include "../headers/virt_mach_func.h"
 #include "../headers/processor.h"
 
+#include "../headers/stack_func.h"
+
 /* ... 3 ПРОГРАММЫ: ASSEMBLER, DISASSEMBLER, PROCESSOR
    ... NAMING: COMPILER -> ASSEMBLER; EXECUTOR -> PROCESSOR
    ... ИЗБАВИТЬСЯ ОТ ELSE IF В COMPILER: СДЕЛАТЬ МАССИВ СТРУКТУР ЧИСЛО-СТРОКА (НОМЕР_КОМАНДЫ - СТРОКОВОЕ ПРЕДСТВАЛЕНИЕ). FOR-ОМ НАЙТИ НУЖНЫЙ КОД

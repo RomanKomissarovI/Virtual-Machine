@@ -89,6 +89,7 @@ int StackDump(Stack* stk ON_DEBUG(, const char* file, int line))
     fprintf(output, "size: %d\ncapacity: %d\nError code: %d\n", stk->size, stk->capacity, err);
     ON_DEBUG(fprintf(output, "Error found: file: %s, line: %d\n", file, line);)
     ON_DEBUG(fprintf(output, "Value created: file: %s, line: %d, name_val: %s\n\n\n\n\n", stk->file, stk->line, stk->name);)
+    fprintf(output, "\n----------------------------------------------------------------------------------------------\n\n");
 
     return err;
 }

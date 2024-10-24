@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "../headers/processor.h"
+#include "../headers/get_arg.h"
 
 void Run(virt_mach* vm)
 {
@@ -13,13 +14,16 @@ void Run(virt_mach* vm)
                 return;
             }
             case push_c: {
-                StackPush(&(vm->stk), vm->code[ip + 1]);
-                ip += 2;
+                ip++;
+                StackPush(&(vm->stk), GetArg(vm, &ip));
                 break;
             }
             case pop_c: {
-                StackPop(&(vm->stk));
                 ip++;
+
+                stack_t elem = StackPop(&(vm->stk));
+                GetArgPop(vm, &ip, elem);
+
                 break;
             }
             case dump_c: {
@@ -29,7 +33,7 @@ void Run(virt_mach* vm)
             }
             case in_c: {
                 command_t dig = 0;
-                scanf(format, &dig); // const format
+                scanf(format, &dig); 
                 StackPush(&(vm->stk), dig);
                 ip++;
                 break;
