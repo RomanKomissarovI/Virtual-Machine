@@ -34,7 +34,7 @@ void Assembler(FILE* input, Label labels[])
             continue;
         }
         
-        size += sizeof(command_t); // command
+        size += sizeof(char); // command
         ip += 1; // command
 
         int int_command = -10;
@@ -117,8 +117,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
 
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -128,8 +128,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -139,8 +139,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -150,8 +150,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -161,8 +161,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -172,8 +172,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }
@@ -183,8 +183,8 @@ void Assembler(FILE* input, Label labels[])
             fscanf(input, "%s", label_name);
             fprintf(output, "%d\n", LabelPtr(labels, label_name));
             
-            ip += 1;
-            size += sizeof(command_t);
+            ip += sizeof(int);
+            size += sizeof(int);
 
             break;
         }

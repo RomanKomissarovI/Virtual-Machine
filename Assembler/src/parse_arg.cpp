@@ -4,6 +4,7 @@
 
 static const int Max_len_args = 50;
 // сделать различие AX + 12; AX * 12; AX - 12
+
 void ParseArgs(FILE* input, FILE* output, int* ip, int* size)
 {
     int reg = -1;
@@ -51,18 +52,18 @@ void ParseArgs(FILE* input, FILE* output, int* ip, int* size)
 
     fprintf(output, "%d ", info_byte);
     (*ip)++;
-    (*size) += sizeof(command_t);
+    (*size) += sizeof(char);
 
     if (info_byte & 1)
     {
         fprintf(output, "%d ", reg);
         (*ip)++;
-        (*size) += sizeof(command_t);
+        (*size) += sizeof(char);
     }
     if (info_byte & 2)
     {
         fprintf(output, format_code, digit);
-        (*ip)++;
+        (*ip) += sizeof(command_t);
         (*size) += sizeof(command_t);
     }
     fprintf(output, "\n");

@@ -4,10 +4,31 @@
 
 #include "../headers/stack_func.h"
 
-/* ... 3 ПРОГРАММЫ: ASSEMBLER, DISASSEMBLER, PROCESSOR
-   ... NAMING: COMPILER -> ASSEMBLER; EXECUTOR -> PROCESSOR
-   ... ИЗБАВИТЬСЯ ОТ ELSE IF В COMPILER: СДЕЛАТЬ МАССИВ СТРУКТУР ЧИСЛО-СТРОКА (НОМЕР_КОМАНДЫ - СТРОКОВОЕ ПРЕДСТВАЛЕНИЕ). FOR-ОМ НАЙТИ НУЖНЫЙ КОД
-   И СДЕЛАТЬ SWITCH ВМЕСТО ELSE-IF*/
+/*  ... СИНХРОНИЗИРОВАТЬ stack_t И command_t
+    ... СДЕЛАТЬ КОМАНДЫ ТАКИМИ, ЧТОБЫ МОЖНО БЫЛО ОБОЙТИ SWITCH (ПОНИМАТЬ ПО БИТАМ ЧИТАМУЮ ИНФОРМАЦИЮ)
+    ... 3 ПРОГРАММЫ: ASSEMBLER, DISASSEMBLER, PROCESSOR
+
+    push 228228
+    jmp next
+    push 3
+    next:
+    pop AX
+    hlt
+*/
+
+/*
+    Not Work:   push 228229
+                dump
+                push 11
+                dump
+                hlt
+    
+    Work:       push 228229
+                push 11
+                dump
+                hlt
+
+*/
 
 int main()
 {
@@ -16,12 +37,12 @@ int main()
     FILE* input = fopen("assembler.txt", "r");
     VM_Ctor(&vm, input);
     
-    int i = 0; 
-    while (vm.code[i] != hlt_c)
-    {
-        printf(format " ", vm.code[i++]);
-    }
-    printf("0\n");
+    // int i = 0; 
+    // while (vm.code[i] != hlt_c)
+    // {
+    //     printf(format " ", vm.code[i++]);
+    // }
+    // printf("0\n");
     
     Run(&vm);
     return 0;

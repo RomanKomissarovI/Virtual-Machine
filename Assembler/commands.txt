@@ -1,6 +1,5 @@
-push 228
-pop CX
+push 228229
 dump
-push CX
+push 11
 dump
 hlt

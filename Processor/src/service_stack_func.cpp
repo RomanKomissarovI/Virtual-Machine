@@ -63,7 +63,9 @@ int StackDump(Stack* stk ON_DEBUG(, const char* file, int line))
     int err = stk == nullptr;
     DEBUG_PR_ERR(err);
 
+    printf("in dump\n");
     fprintf(output, "Elems:\n"); 
+    printf("ok\n");
     err = StackError(stk);
 
     if (err != Null_Data_Ptr)

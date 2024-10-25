@@ -1,5 +1,9 @@
 #include "../headers/assembler.h"
 
+/*
+    ... СДЕЛАТЬ КОМАНДЫ ТАКИМИ, ЧТОБЫ МОЖНО БЫЛО ОБОЙТИ SWITCH (ПОНИМАТЬ ПО БИТАМ ЧИТАМУЮ ИНФОРМАЦИЮ)
+*/
+
 int main()
 {
     FILE* input = fopen("commands.txt", "r");

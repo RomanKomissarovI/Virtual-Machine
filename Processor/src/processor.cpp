@@ -8,6 +8,7 @@ void Run(virt_mach* vm)
     int ip = 0;
     while (true)
     {
+        printf("  ip: %d\n", ip);
         switch (vm->code[ip]) 
         {
             case hlt_c: {
@@ -16,6 +17,7 @@ void Run(virt_mach* vm)
             case push_c: {
                 ip++;
                 StackPush(&(vm->stk), GetArg(vm, &ip));
+                //printf("")
                 break;
             }
             case pop_c: {
@@ -84,7 +86,7 @@ void Run(virt_mach* vm)
             case jm_c: {
                 if (StackPop(&(vm->stk)) < StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
@@ -93,7 +95,7 @@ void Run(virt_mach* vm)
             case jme_c: {
                 if (StackPop(&(vm->stk)) <= StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
@@ -102,7 +104,7 @@ void Run(virt_mach* vm)
             case jl_c: {
                 if (StackPop(&(vm->stk)) > StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
@@ -111,7 +113,7 @@ void Run(virt_mach* vm)
             case jle_c: {
                 if (StackPop(&(vm->stk)) >= StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
@@ -120,7 +122,7 @@ void Run(virt_mach* vm)
             case je_c: {
                 if (StackPop(&(vm->stk)) == StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
@@ -129,18 +131,18 @@ void Run(virt_mach* vm)
             case jne_c: {
                 if (StackPop(&(vm->stk)) != StackPop(&(vm->stk)))
                 {
-                    ip = (size_t) vm->code[ip + 1];
+                    ip = *(int*) (vm->code + ip + 1);
                     break;
                 }
                 ip += 2;
                 break;
             }
             case jmp_c: {
-                ip = (size_t) vm->code[ip + 1];
+                ip = *(int*) (vm->code + ip + 1);
                 break;
             }
             default: {
-                printf("Error command\n");
+                printf("Error command: %d\n", vm->code[ip]);
                 exit(1);
                 break;
             }
