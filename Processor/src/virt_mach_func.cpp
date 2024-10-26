@@ -2,9 +2,11 @@
 #include "../headers/stack_func.h"
 #include "../headers/macros.h"
 
-void VM_Ctor(virt_mach* vm, FILE* input)
+void VM_Ctor(virt_mach* vm, FILE* input, FILE* output)
 {
-    STACK_CTOR(vm->stk);    //stack
+    //fprintf(output, "CTOR\n");
+    STACK_CTOR(vm->stk, output);    //stack
+    //fprintf(output, "CTOR2\n");
     
     int size = 0;
     fscanf(input, "%d", &size);
@@ -12,6 +14,7 @@ void VM_Ctor(virt_mach* vm, FILE* input)
     vm->code = (char*) calloc(size, sizeof(char)); //code
     int ip = 0;
     int arg_type = 0;
+    //fprintf(output, "CTOR3\n");
     while (ip < size)
     {
         fscanf(input, "%d ", &(vm->code[ip]));
@@ -53,13 +56,16 @@ void VM_Ctor(virt_mach* vm, FILE* input)
             printf("%d ", *(int*) (vm->code + ip + 1));
             ip += sizeof(int) + 1;          // adr
         }
-        else ip++;
+        else 
+        {
+            ip++;
+        }
     }
     for (int i = 0; i < count_reg; ++i) //registers
     {
         vm->registers[i] = 0;
     }
-
+    //fprintf(output, "CTOR_END\n");
     // vm->RAM = (command_t*) calloc (RAM_size, sizeof(command_t));
     // for (int i = 0; i < RAM_size; ++i)
     // {

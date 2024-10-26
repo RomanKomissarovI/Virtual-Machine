@@ -2,36 +2,36 @@
 #include <assert.h>
 #include "../headers/service_stack_func.h"
 
-static FILE* output = fopen("output.txt", "w");
+//static FILE* output = fopen("outpuq.txt", "w");
 static const long long k_Hash_xor = 65535;
 static const long long k_Hash_init = 7914;
 static const long long k_Hash_mod = 1e9 + 7;
 
-int StackError(Stack* stk)
+int StackError(Stack* stk, FILE* output)
 {
     int err = No_Errors;
     if(stk == nullptr)
     {
         err = Null_Ptr;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     }
 
     if (stk->data == nullptr)
     {
         err = Null_Data_Ptr;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     }
 
     ON_DEBUG(if (stk->hash_data != Hash_Data(stk))
     {
         err = Error_Hash_Data;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     })
 
     ON_DEBUG(if (stk->hash_stack != Hash_Stack(stk))
     {
         err = Error_Hash_Stack;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     })
 
     ON_DEBUG(size_t ptr_right_canar = (size_t) stk->data + stk->capacity * sizeof(stack_t);)
@@ -40,33 +40,36 @@ int StackError(Stack* stk)
     ON_DEBUG(if ((*(canar_t*) (stk->data - 8) != k_Canar) || (c != k_Canar))
     {
         err = Error_Canar;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     })
 
     if ((stk->size > stk->capacity) || (stk->size < 0))
     {
         err = Error_Size;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     }
 
     if (stk->capacity < 0)
     {
         err = Error_Capacity;
-        DEBUG_PR_ERR(err);
+        DEBUG_PR_ERR(err, output);
     }
     
     return No_Errors;
 }
 
-int StackDump(Stack* stk ON_DEBUG(, const char* file, int line))
+int StackDump(Stack* stk, FILE* output ON_DEBUG(, const char* file, int line))
 {
     int err = stk == nullptr;
-    DEBUG_PR_ERR(err);
+    DEBUG_PR_ERR(err, output);
 
-    printf("in dump\n");
+    // fclose(output);
+    // output = fopen("output.txt", "a");
+    // FILE* qwert = fopen("qqq.txt", "a");
+    printf("in dump, output: %p\n", output);
     fprintf(output, "Elems:\n"); 
     printf("ok\n");
-    err = StackError(stk);
+    err = StackError(stk, output);
 
     if (err != Null_Data_Ptr)
     {
@@ -96,13 +99,13 @@ int StackDump(Stack* stk ON_DEBUG(, const char* file, int line))
     return err;
 }
 
-int Recalloc(Stack* stk, int old_size, int new_capacity)
+int Recalloc(Stack* stk, int old_size, int new_capacity, FILE* output)
 {
     int err = No_Errors;
 
     if (stk == nullptr)
     {
-        DEBUG_PR_ERR(Null_Ptr);
+        DEBUG_PR_ERR(Null_Ptr, output);
     }
 
     ON_DEBUG(stk->hash_stack = (stk->hash_stack - (stk->capacity ^ k_Hash_xor)) % k_Hash_mod;)
@@ -116,7 +119,7 @@ int Recalloc(Stack* stk, int old_size, int new_capacity)
 
     if (stk->data == nullptr)
     {
-        DEBUG_PR_ERR(Null_Data_Ptr);
+        DEBUG_PR_ERR(Null_Data_Ptr, output);
     }
 
     memset(stk->data + old_size * sizeof(stack_t), '\0', (new_capacity - old_size) * sizeof(stack_t));
@@ -124,26 +127,26 @@ int Recalloc(Stack* stk, int old_size, int new_capacity)
     ON_DEBUG(size_t ptr_right_canar = (size_t) stk->data + new_capacity * sizeof(stack_t);)
     ON_DEBUG(*(canar_t*) (ptr_right_canar + (sizeof(canar_t) - ptr_right_canar % sizeof(canar_t)) % sizeof(canar_t)) = k_Canar;)    //ON_DEBUG(printf("RIGHT CANAR: %lld", (size_t) &right_canar);)
 
-    err = StackError(stk);
-    DEBUG_PR_ERR(err);
+    err = StackError(stk, output);
+    DEBUG_PR_ERR(err, output);
 
     return err;
 }
 
-void StackAssert(Stack* stk)
+void StackAssert(Stack* stk, FILE* output)
 {
     int err = No_Errors;
 
-    if ((err = StackError(stk)))
+    if ((err = StackError(stk, output)))
     {
-        STACK_DUMP(stk);
-        PrintError(err, __FILE__, __LINE__, __PRETTY_FUNCTION__);
+        STACK_DUMP(stk, output);
+        PrintError(err, __FILE__, __LINE__, __PRETTY_FUNCTION__, output);
 
         assert(nullptr);
     }
 }
 
-void PrintError(int err, const char* file, int line, const char* func)
+void PrintError(int err, const char* file, int line, const char* func, FILE* output)
 {
     fprintf(output, "file: %s, line: %d, func: %s Error code %d\n", file, line, func, err);
 }

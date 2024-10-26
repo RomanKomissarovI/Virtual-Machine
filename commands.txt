@@ -1,8 +1,0 @@
-10
-push 6
-push 6
-mul
-push 42
-out
-dump
-hlt

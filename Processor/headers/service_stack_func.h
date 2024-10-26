@@ -3,15 +3,15 @@
 
 #include "stack.h"
 
-int StackError(Stack* stk);
+int StackError(Stack* stk, FILE* output);
 
-int StackDump(Stack* stk ON_DEBUG(, const char* file, int line));
+int StackDump(Stack* stk, FILE* output ON_DEBUG(, const char* file, int line));
 
-void StackAssert(Stack* stk);
+void StackAssert(Stack* stk, FILE* output);
 
-int Recalloc(Stack* stk, int old_size, int new_size);
+int Recalloc(Stack* stk, int old_size, int new_size, FILE* output);
 
-void PrintError(int err, const char* file, int line, const char* func);
+void PrintError(int err, const char* file, int line, const char* func, FILE* output);
 
 long long Hash_Data(Stack* stk);
 

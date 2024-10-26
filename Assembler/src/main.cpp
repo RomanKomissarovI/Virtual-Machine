@@ -24,10 +24,10 @@ int main()
 
     fclose(input);
 
-    for(int i = 0; i < count_labels; ++i)
-    {
-        printf("ip: %d, ", labels[i].ip);
-        printf("name: %s\n", labels[i].name);
-    }
+    // for(int i = 0; i < count_labels; ++i)
+    // {
+    //     printf("ip: %d, ", labels[i].ip);
+    //     printf("name: %s\n", labels[i].name);
+    // }
     return 0;
 }

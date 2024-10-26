@@ -3,12 +3,12 @@
 
 #include "service_stack_func.h"
 
-int StackPush(Stack* stk, stack_t a);
+int StackPush(Stack* stk, stack_t a, FILE* output);
 
-long long StackPop(Stack* stk);
+long long StackPop(Stack* stk, FILE* output);
 
-int StackCtor(Stack* stk ON_DEBUG(, const char* name, const char* file, int line));
+int StackCtor(Stack* stk, FILE* output ON_DEBUG(, const char* name, const char* file, int line));
 
-int StackDtor(Stack* stk);
+int StackDtor(Stack* stk, FILE* output);
 
 #endif // STACK_FUNC_H

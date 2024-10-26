@@ -3,24 +3,23 @@
 #include <string.h>
 #include "../headers/stack_func.h"
 
-static FILE* output = fopen("output.txt", "w");
 static const long long k_Hash_xor = 65535;
 static const long long k_Hash_init = 7914;
 static const long long k_Hash_mod = 1e9 + 7;
 
-int StackPush(Stack* stk, stack_t a)
+int StackPush(Stack* stk, stack_t a, FILE* output)
 {
     int err = No_Errors;
 
-    err = StackError(stk);
-    DEBUG_PR_ERR(err);
+    err = StackError(stk, output);
+    DEBUG_PR_ERR(err, output);
 
     if (stk->size == stk->capacity)
     {
-        err = Recalloc(stk, stk->size, (int) (stk->capacity * 1.4) + 10);
+        err = Recalloc(stk, stk->size, (int) (stk->capacity * 1.4) + 10, output);
     }
 
-    DEBUG_PR_ERR(err);
+    DEBUG_PR_ERR(err, output);
 
     ON_DEBUG(stk->hash_stack = (stk->hash_stack - (stk->size ^ k_Hash_xor)) % k_Hash_mod;)
     (stk->size)++;
@@ -30,22 +29,22 @@ int StackPush(Stack* stk, stack_t a)
     ON_DEBUG(stk->hash_data = (stk->hash_data + (k_Hash_xor ^ a)) % k_Hash_mod;)
 
     ON_DEBUG(err = StackError(stk);
-    DEBUG_PR_ERR(err);)
+    DEBUG_PR_ERR(err, output);)
 
     return err;
 }
 
-long long StackPop(Stack* stk)
+long long StackPop(Stack* stk, FILE* output)
 {
     int err = No_Errors;
 
-    err = StackError(stk);
-    DEBUG_PR_ERR(err);
+    err = StackError(stk, output);
+    DEBUG_PR_ERR(err, output);
 
     if (stk->size - 1 <= stk->capacity / 2.5 - 5)
     {
-        err = Recalloc(stk, stk->size, stk->capacity / 2);
-        DEBUG_PR_ERR(err);
+        err = Recalloc(stk, stk->size, stk->capacity / 2, output);
+        DEBUG_PR_ERR(err, output);
     }
 
     ON_DEBUG(stk->hash_stack = (stk->hash_stack - (stk->size ^ k_Hash_xor)) % k_Hash_mod;)
@@ -66,11 +65,11 @@ long long StackPop(Stack* stk)
     return elem;
 }
 
-int StackCtor(Stack* stk ON_DEBUG(, const char* name, const char* file, int line))
+int StackCtor(Stack* stk, FILE* output ON_DEBUG(, const char* name, const char* file, int line))
 {
     int err = stk == nullptr;
 
-    DEBUG_PR_ERR(err);
+    DEBUG_PR_ERR(err, output);
 
     stk->size = 0;
     stk->capacity = 10;
@@ -87,16 +86,16 @@ int StackCtor(Stack* stk ON_DEBUG(, const char* name, const char* file, int line
     ON_DEBUG(size_t ptr_right_canar = (size_t) stk->data + stk->capacity * sizeof(stack_t);)
     ON_DEBUG(*(canar_t*) (ptr_right_canar + (sizeof(canar_t) - ptr_right_canar % sizeof(canar_t)) % sizeof(canar_t)) = k_Canar;)
 
-    err = StackError(stk);
-    DEBUG_PR_ERR(err);
+    err = StackError(stk, output);
+    DEBUG_PR_ERR(err, output);
 
     return err;
 }
 
-int StackDtor(Stack* stk)
+int StackDtor(Stack* stk, FILE* output)
 {
     int err = stk == nullptr;
-    DEBUG_PR_ERR(err);
+    DEBUG_PR_ERR(err, output);
 
     ON_DEBUG(stk->name = "";)
     ON_DEBUG(stk->file = "";)

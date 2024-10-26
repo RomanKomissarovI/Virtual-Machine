@@ -1,5 +1,10 @@
+dump
 push 228229
+pop AX
+push AX + 671
 dump
-push 11
+push 1000
+div
 dump
+out
 hlt
